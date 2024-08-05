@@ -1,5 +1,5 @@
 <!-- install bun -->
-Install from bun https://bun.sh/docs/installation
+Install bun from https://bun.sh/docs/installation
 <!-- install bun end -->
  
 <!-- copy and rename env.example -->
