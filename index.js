@@ -22,6 +22,7 @@ client.on('messageCreate', async Message => {
     if (!Message.content.startsWith(BotConfig.Prefix)) return;
     const Cmd = Message.content.slice(BotConfig.Prefix.length).trim().split(' ')
     const Command = Cmd.shift()
+    
     if (Command == 'setup') {
         Message.delete()
         const Embed = new EmbedBuilder()
@@ -29,49 +30,14 @@ client.on('messageCreate', async Message => {
             .setDescription(`Click on the Button to Control your Temporary Channel`)
             .setTimestamp()
             .setFooter({ text: Message.guild.name, iconURL: Message.guild.iconURL() })
-        const Menu = new StringSelectMenuBuilder()
-            .setCustomId('Menu')
-            .setMaxValues(1)
-            .setMinValues(1)
-            .setPlaceholder('Limit Users')
-            .addOptions([
-                { label: '0', value: '0' },
-                { label: '1', value: '1' },
-                { label: '2', value: '2' },
-                { label: '3', value: '3' },
-                { label: '4', value: '4' },
-                { label: '5', value: '5' },
-                { label: '10', value: '10' },
-                { label: '15', value: '15' },
-                { label: '20', value: '20' },
-                { label: '25', value: '25' },
-                { label: '30', value: '30' },
-                { label: '35', value: '35' },
-                { label: '40', value: '40' },
-                { label: '45', value: '45' },
-                { label: '50', value: '50' },
-                { label: '55', value: '55' },
-                { label: '60', value: '60' },
-                { label: '65', value: '65' }
-            ])
 
-        const RowOne = new ActionRowBuilder()
-            .addComponents(
-                new ButtonBuilder()
-                    .setStyle(ButtonStyle.Secondary)
-                    .setLabel('Lock')
-                    .setCustomId('LockChannel'),
-                new ButtonBuilder()
-                    .setStyle(ButtonStyle.Secondary)
-                    .setLabel('Unlock')
-                    .setCustomId('UnlockChannel'))
         const RowTwo = new ActionRowBuilder()
             .addComponents(
-                new ButtonBuilder()
-                    .setStyle(ButtonStyle.Secondary)
-                    .setEmoji('1084915797463404614')
-                    .setLabel('Customize Users')
-                    .setCustomId('Customize_UserLimit'),
+                // new ButtonBuilder()
+                //     .setStyle(ButtonStyle.Secondary)
+                //     .setEmoji('1084915797463404614')
+                //     .setLabel('Customize Users')
+                //     .setCustomId('Customize_UserLimit'),
                 new ButtonBuilder()
                     .setStyle(ButtonStyle.Danger)
                     .setEmoji('1079515860516999290')
@@ -90,9 +56,7 @@ client.on('messageCreate', async Message => {
                     .setLabel('Rename')
                     .setCustomId('RenameChannel')
             )
-        const RowFour = new ActionRowBuilder()
-            .addComponents([Menu])
-        Message.channel.send({ embeds: [Embed], components: [RowOne, RowTwo, RowThree, RowFour] })
+        Message.channel.send({ embeds: [Embed], components: [RowTwo, RowThree] })
     }
 })
 
